@@ -1,0 +1,1017 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Questionario preliminare – Brevetto per invenzione industriale</title>
+  <style>
+    :root { --max: 980px; --border: #d0d7de; --bg: #fff; --muted: #57606a; }
+    body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; line-height: 1.4; margin: 0; background: #f6f8fa; color: #24292f; }
+    header { background: var(--bg); border-bottom: 1px solid var(--border); }
+    .wrap { max-width: var(--max); margin: 0 auto; padding: 18px 16px; }
+    h1 { font-size: 1.3rem; margin: 0 0 6px; }
+    p.lead { margin: 0; color: var(--muted); }
+    main { padding: 16px; }
+    form { max-width: var(--max); margin: 0 auto; background: var(--bg); border: 1px solid var(--border); border-radius: 12px; padding: 18px; }
+    fieldset { border: 1px solid var(--border); border-radius: 12px; padding: 14px; margin: 16px 0; }
+    legend { font-weight: 700; padding: 0 6px; }
+    .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    @media (max-width: 760px) { .grid { grid-template-columns: 1fr; } }
+    label { display: block; font-weight: 600; margin-bottom: 6px; }
+    .hint { color: var(--muted); font-size: 0.92rem; margin-top: 4px; }
+    input[type="text"], input[type="email"], input[type="date"], textarea, select {
+      width: 100%; box-sizing: border-box; padding: 10px 11px; border-radius: 10px; border: 1px solid var(--border); background: #fff;
+    }
+    textarea { min-height: 92px; resize: vertical; }
+    .row { margin-bottom: 12px; }
+    .req { color: #cf222e; margin-left: 6px; }
+    .actions { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 12px; }
+    button {
+      border: 1px solid var(--border); background: #fff; padding: 10px 12px; border-radius: 10px; cursor: pointer; font-weight: 650;
+    }
+    button.primary { background: #0969da; border-color: #0969da; color: #fff; }
+    button:focus, input:focus, textarea:focus, select:focus { outline: 3px solid rgba(9,105,218,0.25); outline-offset: 2px; }
+    .pill { display: inline-flex; gap: 8px; align-items: center; padding: 8px 10px; border: 1px solid var(--border); border-radius: 999px; background: #fff; }
+    .muted { color: var(--muted); }
+    .divider { height: 1px; background: var(--border); margin: 10px 0; }
+    .error { color: #cf222e; font-weight: 650; }
+    .success { color: #1a7f37; font-weight: 650; }
+    .hidden { display: none !important; }
+    .repeat { border: 1px dashed var(--border); border-radius: 12px; padding: 12px; margin: 10px 0; }
+    .small { font-size: 0.92rem; }
+    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); border: 0; }
+  </style>
+</head>
+
+<body>
+<header>
+  <div class="wrap">
+    <h1>Questionario preliminare – Brevetto per invenzione industriale</h1>
+    <p class="lead">Compila i campi essenziali. Se alcune informazioni non sono disponibili, puoi lasciarle vuote (salvo i campi obbligatori).</p>
+  </div>
+</header>
+
+<main>
+  <form id="patentForm" novalidate>
+    <!-- Honeypot anti-spam -->
+    <div class="sr-only" aria-hidden="true">
+      <label for="website">Website</label>
+      <input id="website" name="website" type="text" autocomplete="off" />
+    </div>
+
+    <div id="status" role="status" aria-live="polite" class="row"></div>
+
+    <fieldset>
+      <legend>1) Privacy e consensi minimi</legend>
+      <div class="row">
+        <label class="pill">
+          <input type="checkbox" id="privacyViewed" required />
+          <span>Presa visione informativa privacy <span class="req">*</span></span>
+        </label>
+        <div class="hint">Confermo di aver preso visione dell’informativa privacy del sito.</div>
+      </div>
+      <div class="row">
+        <label class="pill">
+          <input type="checkbox" id="contactConsent" required />
+          <span>Consenso al trattamento per finalità di contatto <span class="req">*</span></span>
+        </label>
+      </div>
+      <p class="muted small">Le informazioni raccolte servono per un primo inquadramento e per organizzare un incontro. Non costituiscono ancora una consulenza definitiva né un deposito.</p>
+    </fieldset>
+
+    <fieldset>
+      <legend>2) Anagrafica titolare / richiedente (chi deposita)</legend>
+
+      <div class="row">
+        <label for="applicantType">Il richiedente è <span class="req">*</span></label>
+        <select id="applicantType" required>
+          <option value="">— Seleziona —</option>
+          <option>Persona fisica</option>
+          <option>Azienda/Ente</option>
+          <option>Più soggetti (contitolarità)</option>
+        </select>
+      </div>
+
+      <div id="companyBlock" class="hidden" aria-hidden="true">
+        <div class="grid">
+          <div class="row">
+            <label for="companyName">Denominazione sociale <span class="req">*</span></label>
+            <input id="companyName" type="text" />
+          </div>
+          <div class="row">
+            <label for="companyLegalForm">Forma giuridica</label>
+            <input id="companyLegalForm" type="text" placeholder="Es. S.r.l., S.p.A., università…" />
+          </div>
+        </div>
+        <div class="row">
+          <label for="companyHQ">Sede legale (indirizzo, CAP, città, provincia/stato) <span class="req">*</span></label>
+          <textarea id="companyHQ"></textarea>
+        </div>
+        <div class="grid">
+          <div class="row">
+            <label for="companyCountry">Paese <span class="req">*</span></label>
+            <input id="companyCountry" type="text" />
+          </div>
+          <div class="row">
+            <label for="companyVat">P.IVA</label>
+            <input id="companyVat" type="text" />
+          </div>
+        </div>
+        <div class="grid">
+          <div class="row">
+            <label for="companyTaxCode">Codice Fiscale</label>
+            <input id="companyTaxCode" type="text" />
+          </div>
+          <div class="row">
+            <label for="companyEmail">Email <span class="req">*</span></label>
+            <input id="companyEmail" type="email" />
+          </div>
+        </div>
+        <div class="grid">
+          <div class="row">
+            <label for="companyPEC">PEC (preferibile)</label>
+            <input id="companyPEC" type="email" />
+          </div>
+          <div class="row">
+            <label for="companyPhone">Telefono</label>
+            <input id="companyPhone" type="text" />
+          </div>
+        </div>
+        <div class="grid">
+          <div class="row">
+            <label for="repName">Legale rappresentante – Nome e Cognome</label>
+            <input id="repName" type="text" />
+          </div>
+          <div class="row">
+            <label for="repTaxCode">Legale rappresentante – Codice Fiscale</label>
+            <input id="repTaxCode" type="text" />
+          </div>
+        </div>
+      </div>
+
+      <div id="personBlock" class="hidden" aria-hidden="true">
+        <div class="grid">
+          <div class="row">
+            <label for="personFullName">Nome e Cognome <span class="req">*</span></label>
+            <input id="personFullName" type="text" />
+          </div>
+          <div class="row">
+            <label for="personTaxCode">Codice Fiscale</label>
+            <input id="personTaxCode" type="text" />
+          </div>
+        </div>
+        <div class="row">
+          <label for="personBirth">Luogo e data di nascita</label>
+          <input id="personBirth" type="text" placeholder="Es. Milano, 01/01/1980" />
+        </div>
+        <div class="row">
+          <label for="personResidence">Residenza (indirizzo, città, CAP, provincia/stato) <span class="req">*</span></label>
+          <textarea id="personResidence"></textarea>
+        </div>
+        <div class="grid">
+          <div class="row">
+            <label for="personCountry">Paese <span class="req">*</span></label>
+            <input id="personCountry" type="text" />
+          </div>
+          <div class="row">
+            <label for="personEmail">Email <span class="req">*</span></label>
+            <input id="personEmail" type="email" />
+          </div>
+        </div>
+        <div class="grid">
+          <div class="row">
+            <label for="personPEC">PEC (preferibile)</label>
+            <input id="personPEC" type="email" />
+          </div>
+          <div class="row">
+            <label for="personPhone">Telefono</label>
+            <input id="personPhone" type="text" />
+          </div>
+        </div>
+      </div>
+
+      <div id="coownerBlock" class="hidden" aria-hidden="true">
+        <div class="row">
+          <label for="coOwnersText">Elenco degli ulteriori contitolari</label>
+          <textarea id="coOwnersText" placeholder="Indica denominazione / nome, sede/residenza, paese, email (se nota)."></textarea>
+          <div class="hint">Puoi anche caricare una visura/riassunto in allegato nella sezione “Caricamento finale”.</div>
+        </div>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>3) Anagrafica inventore/i</legend>
+      <div class="hint">Compila per ogni inventore, anche se coincide con il richiedente. Almeno 1 inventore è richiesto.</div>
+
+      <div id="inventors"></div>
+
+      <div class="actions">
+        <button type="button" id="addInventor">+ Aggiungi inventore</button>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>4) Titolo e campo tecnico dell’invenzione</legend>
+      <div class="grid">
+        <div class="row">
+          <label for="inventionTitle">Titolo provvisorio <span class="req">*</span></label>
+          <input id="inventionTitle" type="text" placeholder="Es. Sistema di…, Metodo per…" required />
+        </div>
+        <div class="row">
+          <label for="technicalField">Campo tecnico / settore <span class="req">*</span></label>
+          <input id="technicalField" type="text" required />
+        </div>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>5) Riassunto dell’invenzione (elevator pitch)</legend>
+      <div class="row">
+        <label for="pitch">Descrizione in 3–6 righe: cosa fa e a cosa serve <span class="req">*</span></label>
+        <textarea id="pitch" required></textarea>
+      </div>
+      <div class="row">
+        <label for="applicationArea">Ambito applicativo principale</label>
+        <textarea id="applicationArea"></textarea>
+      </div>
+      <div class="row">
+        <label for="mainBenefit">Risultato/beneficio principale</label>
+        <textarea id="mainBenefit"></textarea>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>6) Stato dell’arte (prior art) più vicino</legend>
+      <div class="row">
+        <label for="priorArtDescription">Quali soluzioni esistono già oggi? <span class="req">*</span></label>
+        <textarea id="priorArtDescription" required></textarea>
+      </div>
+
+      <div class="row">
+        <label>Link a pagine web / prodotti / video / brochure</label>
+        <div id="priorArtLinks"></div>
+        <div class="actions">
+          <button type="button" id="addPriorArtLink">+ Aggiungi link</button>
+        </div>
+      </div>
+
+      <div class="row">
+        <label for="priorArtPatents">Brevetti/pubblicazioni noti</label>
+        <textarea id="priorArtPatents" placeholder="Numero, titolo, link se possibile."></textarea>
+      </div>
+
+      <div class="row">
+        <label for="attachmentsPriorArt">Allegati sullo stato dell’arte (PDF/immagini)</label>
+        <input id="attachmentsPriorArt" type="file" multiple />
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>7) Problema tecnico</legend>
+      <div class="row">
+        <label for="technicalProblem">Quale problema tecnico non viene risolto dalle soluzioni attuali? <span class="req">*</span></label>
+        <textarea id="technicalProblem" required></textarea>
+      </div>
+      <div class="row">
+        <label for="constraints">Vincoli e requisiti</label>
+        <textarea id="constraints"></textarea>
+      </div>
+      <div class="row">
+        <label for="metrics">Metriche/criteri di confronto</label>
+        <textarea id="metrics" placeholder="Es. -20% consumi, tolleranza ±0,1 mm, ciclo < 2s…"></textarea>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>8) Soluzione proposta e vantaggi tecnici</legend>
+      <div class="row">
+        <label for="solution">In cosa consiste la soluzione? <span class="req">*</span></label>
+        <textarea id="solution" required></textarea>
+      </div>
+      <div class="row">
+        <label for="advantages">Vantaggi tecnici rispetto allo stato dell’arte <span class="req">*</span></label>
+        <textarea id="advantages" required></textarea>
+      </div>
+      <div class="row">
+        <label for="tradeoffs">Svantaggi/compromessi noti</label>
+        <textarea id="tradeoffs"></textarea>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>9) Caratteristiche innovative / differenze</legend>
+      <div class="row">
+        <label for="innovativeFeatures">Elenco delle caratteristiche nuove (in punti) <span class="req">*</span></label>
+        <textarea id="innovativeFeatures" required placeholder="Suggerimento: 5–15 punti, ciascuno “caratteristica + effetto tecnico”."></textarea>
+      </div>
+      <div class="row">
+        <label for="mustHaveVsOptional">Indispensabili vs opzionali</label>
+        <textarea id="mustHaveVsOptional"></textarea>
+      </div>
+      <div class="row">
+        <label for="variants">Alternative/varianti già previste</label>
+        <textarea id="variants"></textarea>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>10) Descrizione tecnica (componenti, fasi, parametri, varianti)</legend>
+
+      <div class="row">
+        <label>Tipologia di invenzione <span class="req">*</span></label>
+        <div class="grid">
+          <label class="pill"><input type="checkbox" name="invType" value="Prodotto/Dispositivo"> Prodotto/Dispositivo</label>
+          <label class="pill"><input type="checkbox" name="invType" value="Impianto/Macchinario"> Impianto/Macchinario</label>
+          <label class="pill"><input type="checkbox" name="invType" value="Metodo/Processo"> Metodo/Processo</label>
+          <label class="pill"><input type="checkbox" name="invType" value="Software/Algoritmo"> Software/Algoritmo</label>
+          <label class="pill"><input type="checkbox" name="invType" value="Composizione/Formulazione"> Composizione/Formulazione</label>
+          <label class="pill"><input type="checkbox" name="invType" value="Altro"> Altro</label>
+        </div>
+      </div>
+
+      <div class="row">
+        <label for="architecture">Architettura/struttura generale</label>
+        <textarea id="architecture"></textarea>
+      </div>
+      <div class="row">
+        <label for="workflow">Funzionamento passo-passo / flusso operativo</label>
+        <textarea id="workflow"></textarea>
+      </div>
+      <div class="row">
+        <label for="parameters">Materiali, dimensioni, range, parametri critici</label>
+        <textarea id="parameters"></textarea>
+      </div>
+      <div class="row">
+        <label for="controlSoftware">Controllo/Software (se presente)</label>
+        <textarea id="controlSoftware"></textarea>
+      </div>
+      <div class="row">
+        <label for="embodiments">Varianti realizzative</label>
+        <textarea id="embodiments"></textarea>
+      </div>
+      <div class="row">
+        <label for="edgeCases">Limiti/edge cases e contromisure</label>
+        <textarea id="edgeCases"></textarea>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>11) Disegni/figure e allegati tecnici</legend>
+      <div class="row">
+        <label for="drawingsAvailable">Sono disponibili disegni/figure/schemi?</label>
+        <select id="drawingsAvailable">
+          <option value="">— Seleziona —</option>
+          <option>Sì</option>
+          <option>No</option>
+          <option>In preparazione</option>
+        </select>
+      </div>
+      <div class="row">
+        <label for="attachmentsTech">Carica allegati tecnici (PDF/DOC/immagini/CAD zippato)</label>
+        <input id="attachmentsTech" type="file" multiple />
+      </div>
+      <div class="row">
+        <label for="figureDescriptions">Descrizione delle figure (se caricate)</label>
+        <textarea id="figureDescriptions"></textarea>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>12) Prototipo, test, risultati</legend>
+      <div class="grid">
+        <div class="row">
+          <label for="prototypeStatus">Esiste un prototipo?</label>
+          <select id="prototypeStatus">
+            <option value="">— Seleziona —</option>
+            <option>Sì</option>
+            <option>No</option>
+            <option>Parziale / proof-of-concept</option>
+          </select>
+        </div>
+        <div class="row">
+          <label for="testsStatus">Test o simulazioni?</label>
+          <select id="testsStatus">
+            <option value="">— Seleziona —</option>
+            <option>Sì</option>
+            <option>No</option>
+            <option>In corso</option>
+          </select>
+        </div>
+      </div>
+      <div class="row">
+        <label for="testResults">Descrizione sintetica di test e risultati</label>
+        <textarea id="testResults"></textarea>
+      </div>
+      <div class="row">
+        <label for="attachmentsTests">Carica report, foto, misure</label>
+        <input id="attachmentsTests" type="file" multiple />
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>13) Divulgazioni e confidenzialità</legend>
+      <div class="row">
+        <label for="disclosed">L’invenzione è già stata divulgata al pubblico? <span class="req">*</span></label>
+        <select id="disclosed" required>
+          <option value="">— Seleziona —</option>
+          <option>No</option>
+          <option>Sì</option>
+          <option>Non so</option>
+        </select>
+      </div>
+      <div class="row">
+        <label for="disclosureHow">Se Sì: come è stata divulgata?</label>
+        <textarea id="disclosureHow" placeholder="Sito web, fiera, vendita, social, demo, pitch…"></textarea>
+      </div>
+      <div class="row">
+        <label for="disclosureWhenWhere">Se Sì: quando (data o periodo) e dove?</label>
+        <textarea id="disclosureWhenWhere"></textarea>
+      </div>
+      <div class="row">
+        <label for="disclosureToWhom">Se Sì: a chi?</label>
+        <textarea id="disclosureToWhom" placeholder="Pubblico indistinto / clienti / investitori / partner…"></textarea>
+      </div>
+      <div class="row">
+        <label for="futureDisclosure">È prevista una divulgazione futura?</label>
+        <select id="futureDisclosure">
+          <option value="">— Seleziona —</option>
+          <option>No</option>
+          <option>Sì</option>
+          <option>Non so</option>
+        </select>
+      </div>
+      <div class="row">
+        <label for="futureDisclosureDetails">Se Sì: quando e in quale contesto?</label>
+        <textarea id="futureDisclosureDetails" placeholder="Fiera, pitch, pubblicazione, commercializzazione…"></textarea>
+      </div>
+      <div class="row">
+        <label for="ndaSigned">NDA con terzi?</label>
+        <select id="ndaSigned">
+          <option value="">— Seleziona —</option>
+          <option>Sì</option>
+          <option>No</option>
+          <option>Non so</option>
+        </select>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>14) Titolarità e rapporti tra inventori e richiedente</legend>
+
+      <div class="row">
+        <label for="inventorEqualsApplicant">L’inventore coincide con il richiedente?</label>
+        <select id="inventorEqualsApplicant">
+          <option value="">— Seleziona —</option>
+          <option>Sì</option>
+          <option>No</option>
+          <option>In parte (più soggetti)</option>
+        </select>
+      </div>
+
+      <div class="row">
+        <label>Sviluppata nell’ambito di</label>
+        <div class="grid">
+          <label class="pill"><input type="checkbox" name="devCtx" value="Attività personale"> Attività personale</label>
+          <label class="pill"><input type="checkbox" name="devCtx" value="Rapporto di lavoro dipendente"> Rapporto di lavoro dipendente</label>
+          <label class="pill"><input type="checkbox" name="devCtx" value="Consulenza/contratto"> Consulenza/contratto</label>
+          <label class="pill"><input type="checkbox" name="devCtx" value="Collaborazione con università/centro ricerca"> Collaborazione con università/centro ricerca</label>
+          <label class="pill"><input type="checkbox" name="devCtx" value="Progetto con partner"> Progetto con partner</label>
+          <label class="pill"><input type="checkbox" name="devCtx" value="Altro"> Altro</label>
+        </div>
+      </div>
+
+      <div class="row">
+        <label for="universityCollab">L’inventore collabora con un’Università o Ente di ricerca? <span class="req">*</span></label>
+        <select id="universityCollab" required>
+          <option value="">— Seleziona —</option>
+          <option>No</option>
+          <option>Sì</option>
+          <option>Non so</option>
+        </select>
+        <div class="hint">Serve a verificare possibili vincoli su titolarità/diritto di deposito.</div>
+      </div>
+
+      <div class="row">
+        <label for="universityCollabDetails">Se Sì: in che forma? (seleziona e descrivi in breve)</label>
+        <textarea id="universityCollabDetails" placeholder="Es. dipendente/ricercatore, dottorando, studente (tesi), progetto finanziato, uso laboratori; indica anche nome ente e se esistono accordi/regolamenti noti."></textarea>
+      </div>
+
+      <div class="row">
+        <label for="relevantAgreements">Esistono contratti/accordi rilevanti collegati all’invenzione?</label>
+        <select id="relevantAgreements">
+          <option value="">— Seleziona —</option>
+          <option>Sì</option>
+          <option>No</option>
+          <option>Non so</option>
+        </select>
+      </div>
+
+      <div class="row">
+        <label for="relevantAgreementsDetails">Se Sì: descrizione sintetica</label>
+        <textarea id="relevantAgreementsDetails"></textarea>
+      </div>
+
+      <div class="row">
+        <label for="thirdPartyContrib">Contributi/licenze di terzi?</label>
+        <select id="thirdPartyContrib">
+          <option value="">— Seleziona —</option>
+          <option>Sì</option>
+          <option>No</option>
+          <option>Non so</option>
+        </select>
+      </div>
+
+      <div class="row">
+        <label for="thirdPartyDetails">Se Sì: dettagli</label>
+        <textarea id="thirdPartyDetails" placeholder="Es. software open source, componenti acquistati, know-how partner…"></textarea>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>15) Caricamento finale (facoltativo ma consigliato)</legend>
+      <div class="row">
+        <label for="attachmentsFinal">Carica qualunque documento utile</label>
+        <input id="attachmentsFinal" type="file" multiple />
+      </div>
+      <div class="row">
+        <label for="finalNotes">Note finali / richieste particolari per l’incontro</label>
+        <textarea id="finalNotes"></textarea>
+      </div>
+    </fieldset>
+
+    <div class="actions">
+      <button type="submit" class="primary">Invia questionario</button>
+      <button type="button" id="saveDraft">Salva bozza (nel browser)</button>
+      <button type="button" id="loadDraft">Carica bozza</button>
+      <button type="button" id="clearDraft">Cancella bozza</button>
+    </div>
+
+    <p class="muted small" style="margin-top: 12px;">
+      Suggerimento: se devi caricare molti file, comprimi in .zip (es. CAD).
+    </p>
+  </form>
+</main>
+
+<script>
+  const $ = (id) => document.getElementById(id);
+
+  const statusEl = $("status");
+
+  function setStatus(type, msg) {
+    statusEl.className = "row " + (type === "error" ? "error" : type === "success" ? "success" : "");
+    statusEl.textContent = msg || "";
+  }
+
+  // --- Applicant toggle
+  const applicantType = $("applicantType");
+  const companyBlock = $("companyBlock");
+  const personBlock = $("personBlock");
+  const coownerBlock = $("coownerBlock");
+
+  function updateApplicantBlocks() {
+    const v = applicantType.value;
+    companyBlock.classList.toggle("hidden", v !== "Azienda/Ente");
+    companyBlock.setAttribute("aria-hidden", v !== "Azienda/Ente");
+    personBlock.classList.toggle("hidden", v !== "Persona fisica");
+    personBlock.setAttribute("aria-hidden", v !== "Persona fisica");
+    coownerBlock.classList.toggle("hidden", v !== "Più soggetti (contitolarità)");
+    coownerBlock.setAttribute("aria-hidden", v !== "Più soggetti (contitolarità)");
+  }
+  applicantType.addEventListener("change", updateApplicantBlocks);
+
+  // --- Repeaters
+  const inventorsEl = $("inventors");
+  const priorArtLinksEl = $("priorArtLinks");
+
+  function inventorTemplate(idx) {
+    const wrap = document.createElement("div");
+    wrap.className = "repeat";
+    wrap.innerHTML = `
+      <div class="actions" style="justify-content: space-between;">
+        <strong>Inventore ${idx + 1}${idx === 0 ? ' <span class="req">*</span>' : ""}</strong>
+        ${idx === 0 ? "" : `<button type="button" class="removeInventor" aria-label="Rimuovi inventore ${idx + 1}">Rimuovi</button>`}
+      </div>
+      <div class="grid" style="margin-top: 10px;">
+        <div class="row">
+          <label>Nome e Cognome${idx === 0 ? ' <span class="req">*</span>' : ""}</label>
+          <input type="text" class="invFullName" ${idx === 0 ? "required" : ""} />
+        </div>
+        <div class="row">
+          <label>Codice Fiscale</label>
+          <input type="text" class="invTaxCode" />
+        </div>
+      </div>
+      <div class="grid">
+        <div class="row">
+          <label>Luogo e data di nascita</label>
+          <input type="text" class="invBirth" placeholder="Es. Milano, 01/01/1980" />
+        </div>
+        <div class="row">
+          <label>Paese</label>
+          <input type="text" class="invCountry" />
+        </div>
+      </div>
+      <div class="row">
+        <label>Residenza</label>
+        <textarea class="invResidence"></textarea>
+      </div>
+      <div class="grid">
+        <div class="row">
+          <label>Email</label>
+          <input type="email" class="invEmail" />
+        </div>
+        <div class="row">
+          <label>PEC</label>
+          <input type="email" class="invPEC" />
+        </div>
+      </div>
+      <div class="row">
+        <label>Telefono</label>
+        <input type="text" class="invPhone" />
+      </div>
+    `;
+    return wrap;
+  }
+
+  function addInventor() {
+    const idx = inventorsEl.children.length;
+    const node = inventorTemplate(idx);
+    inventorsEl.appendChild(node);
+
+    node.querySelectorAll(".removeInventor").forEach(btn => {
+      btn.addEventListener("click", () => {
+        node.remove();
+        renumberInventors();
+      });
+    });
+  }
+
+  function renumberInventors() {
+    Array.from(inventorsEl.children).forEach((child, idx) => {
+      const strong = child.querySelector("strong");
+      strong.innerHTML = `Inventore ${idx + 1}${idx === 0 ? ' <span class="req">*</span>' : ""}`;
+      const req = child.querySelector(".invFullName");
+      if (idx === 0) req.setAttribute("required", "required");
+      else req.removeAttribute("required");
+
+      const removeBtn = child.querySelector(".removeInventor");
+      if (idx === 0 && removeBtn) removeBtn.remove();
+      if (idx !== 0 && !removeBtn) {
+        const actions = child.querySelector(".actions");
+        const b = document.createElement("button");
+        b.type = "button";
+        b.className = "removeInventor";
+        b.textContent = "Rimuovi";
+        b.addEventListener("click", () => { child.remove(); renumberInventors(); });
+        actions.appendChild(b);
+      }
+    });
+  }
+
+  function addPriorArtLink(value = "") {
+    const row = document.createElement("div");
+    row.className = "row repeat";
+    row.innerHTML = `
+      <div class="grid">
+        <div class="row">
+          <label>Link</label>
+          <input type="text" class="priorLink" placeholder="https://..." value="${value.replace(/"/g, "&quot;")}" />
+          <div class="hint">Inserisci un link per ciascuna fonte (prodotto, video, pagina web, brochure).</div>
+        </div>
+        <div class="row">
+          <label>&nbsp;</label>
+          <button type="button" class="removeLink">Rimuovi</button>
+        </div>
+      </div>
+    `;
+    row.querySelector(".removeLink").addEventListener("click", () => row.remove());
+    priorArtLinksEl.appendChild(row);
+  }
+
+  $("addInventor").addEventListener("click", addInventor);
+  $("addPriorArtLink").addEventListener("click", () => addPriorArtLink());
+
+  // init: 1 inventore + 1 link
+  addInventor();
+  addPriorArtLink();
+
+  // --- Draft localStorage
+  const DRAFT_KEY = "bp_brevetto_draft_v1";
+
+  function collectPayload() {
+    const inventionTypes = Array.from(document.querySelectorAll('input[name="invType"]:checked')).map(i => i.value);
+    const devCtx = Array.from(document.querySelectorAll('input[name="devCtx"]:checked')).map(i => i.value);
+
+    const inventors = Array.from(inventorsEl.children).map((node) => ({
+      fullName: node.querySelector(".invFullName").value.trim(),
+      taxCode: node.querySelector(".invTaxCode").value.trim(),
+      birthPlaceDate: node.querySelector(".invBirth").value.trim(),
+      residence: node.querySelector(".invResidence").value.trim(),
+      country: node.querySelector(".invCountry").value.trim(),
+      email: node.querySelector(".invEmail").value.trim(),
+      pec: node.querySelector(".invPEC").value.trim(),
+      phone: node.querySelector(".invPhone").value.trim()
+    }));
+
+    const priorArtLinks = Array.from(document.querySelectorAll(".priorLink")).map(i => i.value.trim()).filter(Boolean);
+
+    const payload = {
+      privacyViewed: $("privacyViewed").checked,
+      contactConsent: $("contactConsent").checked,
+
+      applicantType: $("applicantType").value,
+
+      company: {
+        name: $("companyName").value.trim(),
+        legalForm: $("companyLegalForm").value.trim(),
+        hq: $("companyHQ").value.trim(),
+        country: $("companyCountry").value.trim(),
+        vat: $("companyVat").value.trim(),
+        taxCode: $("companyTaxCode").value.trim(),
+        email: $("companyEmail").value.trim(),
+        pec: $("companyPEC").value.trim(),
+        phone: $("companyPhone").value.trim(),
+        repName: $("repName").value.trim(),
+        repTaxCode: $("repTaxCode").value.trim()
+      },
+
+      person: {
+        fullName: $("personFullName").value.trim(),
+        taxCode: $("personTaxCode").value.trim(),
+        birthPlaceDate: $("personBirth").value.trim(),
+        residence: $("personResidence").value.trim(),
+        country: $("personCountry").value.trim(),
+        email: $("personEmail").value.trim(),
+        pec: $("personPEC").value.trim(),
+        phone: $("personPhone").value.trim()
+      },
+
+      coOwnersText: $("coOwnersText").value.trim(),
+
+      inventors,
+
+      inventionTitle: $("inventionTitle").value.trim(),
+      technicalField: $("technicalField").value.trim(),
+
+      pitch: $("pitch").value.trim(),
+      applicationArea: $("applicationArea").value.trim(),
+      mainBenefit: $("mainBenefit").value.trim(),
+
+      priorArtDescription: $("priorArtDescription").value.trim(),
+      priorArtLinks,
+      priorArtPatents: $("priorArtPatents").value.trim(),
+
+      technicalProblem: $("technicalProblem").value.trim(),
+      constraints: $("constraints").value.trim(),
+      metrics: $("metrics").value.trim(),
+
+      solution: $("solution").value.trim(),
+      advantages: $("advantages").value.trim(),
+      tradeoffs: $("tradeoffs").value.trim(),
+
+      innovativeFeatures: $("innovativeFeatures").value.trim(),
+      mustHaveVsOptional: $("mustHaveVsOptional").value.trim(),
+      variants: $("variants").value.trim(),
+
+      inventionTypes,
+      architecture: $("architecture").value.trim(),
+      workflow: $("workflow").value.trim(),
+      parameters: $("parameters").value.trim(),
+      controlSoftware: $("controlSoftware").value.trim(),
+      embodiments: $("embodiments").value.trim(),
+      edgeCases: $("edgeCases").value.trim(),
+
+      drawingsAvailable: $("drawingsAvailable").value,
+      figureDescriptions: $("figureDescriptions").value.trim(),
+
+      prototypeStatus: $("prototypeStatus").value,
+      testsStatus: $("testsStatus").value,
+      testResults: $("testResults").value.trim(),
+
+      disclosed: $("disclosed").value,
+      disclosureHow: $("disclosureHow").value.trim(),
+      disclosureWhenWhere: $("disclosureWhenWhere").value.trim(),
+      disclosureToWhom: $("disclosureToWhom").value.trim(),
+      futureDisclosure: $("futureDisclosure").value,
+      futureDisclosureDetails: $("futureDisclosureDetails").value.trim(),
+      ndaSigned: $("ndaSigned").value,
+
+      inventorEqualsApplicant: $("inventorEqualsApplicant").value,
+      developmentContext: devCtx,
+      universityCollab: $("universityCollab").value,
+      universityCollabDetails: $("universityCollabDetails").value.trim(),
+      relevantAgreements: $("relevantAgreements").value,
+      relevantAgreementsDetails: $("relevantAgreementsDetails").value.trim(),
+      thirdPartyContrib: $("thirdPartyContrib").value,
+      thirdPartyDetails: $("thirdPartyDetails").value.trim(),
+
+      finalNotes: $("finalNotes").value.trim()
+    };
+
+    return payload;
+  }
+
+  function validateClient(payload) {
+    const errors = [];
+
+    if (!payload.privacyViewed) errors.push("Sezione Privacy: presa visione obbligatoria.");
+    if (!payload.contactConsent) errors.push("Sezione Privacy: consenso contatto obbligatorio.");
+    if (!payload.applicantType) errors.push("Richiedente: seleziona il tipo.");
+
+    if (payload.applicantType === "Azienda/Ente") {
+      if (!payload.company.name) errors.push("Azienda: denominazione obbligatoria.");
+      if (!payload.company.hq) errors.push("Azienda: sede legale obbligatoria.");
+      if (!payload.company.country) errors.push("Azienda: paese obbligatorio.");
+      if (!payload.company.email) errors.push("Azienda: email obbligatoria.");
+    } else if (payload.applicantType === "Persona fisica") {
+      if (!payload.person.fullName) errors.push("Persona fisica: nome e cognome obbligatorio.");
+      if (!payload.person.residence) errors.push("Persona fisica: residenza obbligatoria.");
+      if (!payload.person.country) errors.push("Persona fisica: paese obbligatorio.");
+      if (!payload.person.email) errors.push("Persona fisica: email obbligatoria.");
+    }
+
+    if (!payload.inventors?.length || !payload.inventors[0]?.fullName) errors.push("Inventore 1: nome e cognome obbligatorio.");
+    if (!payload.inventionTitle) errors.push("Titolo invenzione obbligatorio.");
+    if (!payload.technicalField) errors.push("Campo tecnico obbligatorio.");
+    if (!payload.pitch) errors.push("Riassunto obbligatorio.");
+    if (!payload.priorArtDescription) errors.push("Stato dell’arte: descrizione obbligatoria.");
+    if (!payload.technicalProblem) errors.push("Problema tecnico obbligatorio.");
+    if (!payload.solution) errors.push("Soluzione proposta obbligatoria.");
+    if (!payload.advantages) errors.push("Vantaggi tecnici obbligatori.");
+    if (!payload.innovativeFeatures) errors.push("Caratteristiche innovative obbligatorie.");
+
+    if (!payload.inventionTypes?.length) errors.push("Tipologia invenzione: seleziona almeno una voce.");
+    if (!payload.disclosed) errors.push("Divulgazione: selezione obbligatoria.");
+    if (!payload.universityCollab) errors.push("Università/Ente di ricerca: selezione obbligatoria.");
+
+    return errors;
+  }
+
+  $("saveDraft").addEventListener("click", () => {
+    const payload = collectPayload();
+    localStorage.setItem(DRAFT_KEY, JSON.stringify(payload));
+    setStatus("success", "Bozza salvata nel browser.");
+  });
+
+  $("loadDraft").addEventListener("click", () => {
+    const raw = localStorage.getItem(DRAFT_KEY);
+    if (!raw) return setStatus("error", "Nessuna bozza trovata.");
+    const payload = JSON.parse(raw);
+
+    // set semplici
+    $("privacyViewed").checked = !!payload.privacyViewed;
+    $("contactConsent").checked = !!payload.contactConsent;
+    $("applicantType").value = payload.applicantType || "";
+    updateApplicantBlocks();
+
+    // company
+    $("companyName").value = payload.company?.name || "";
+    $("companyLegalForm").value = payload.company?.legalForm || "";
+    $("companyHQ").value = payload.company?.hq || "";
+    $("companyCountry").value = payload.company?.country || "";
+    $("companyVat").value = payload.company?.vat || "";
+    $("companyTaxCode").value = payload.company?.taxCode || "";
+    $("companyEmail").value = payload.company?.email || "";
+    $("companyPEC").value = payload.company?.pec || "";
+    $("companyPhone").value = payload.company?.phone || "";
+    $("repName").value = payload.company?.repName || "";
+    $("repTaxCode").value = payload.company?.repTaxCode || "";
+
+    // person
+    $("personFullName").value = payload.person?.fullName || "";
+    $("personTaxCode").value = payload.person?.taxCode || "";
+    $("personBirth").value = payload.person?.birthPlaceDate || "";
+    $("personResidence").value = payload.person?.residence || "";
+    $("personCountry").value = payload.person?.country || "";
+    $("personEmail").value = payload.person?.email || "";
+    $("personPEC").value = payload.person?.pec || "";
+    $("personPhone").value = payload.person?.phone || "";
+
+    $("coOwnersText").value = payload.coOwnersText || "";
+
+    // inventors
+    inventorsEl.innerHTML = "";
+    (payload.inventors || [{fullName:""}]).forEach(() => addInventor());
+    Array.from(inventorsEl.children).forEach((node, idx) => {
+      const inv = payload.inventors?.[idx] || {};
+      node.querySelector(".invFullName").value = inv.fullName || "";
+      node.querySelector(".invTaxCode").value = inv.taxCode || "";
+      node.querySelector(".invBirth").value = inv.birthPlaceDate || "";
+      node.querySelector(".invResidence").value = inv.residence || "";
+      node.querySelector(".invCountry").value = inv.country || "";
+      node.querySelector(".invEmail").value = inv.email || "";
+      node.querySelector(".invPEC").value = inv.pec || "";
+      node.querySelector(".invPhone").value = inv.phone || "";
+    });
+    renumberInventors();
+
+    $("inventionTitle").value = payload.inventionTitle || "";
+    $("technicalField").value = payload.technicalField || "";
+    $("pitch").value = payload.pitch || "";
+    $("applicationArea").value = payload.applicationArea || "";
+    $("mainBenefit").value = payload.mainBenefit || "";
+    $("priorArtDescription").value = payload.priorArtDescription || "";
+
+    // prior links
+    priorArtLinksEl.innerHTML = "";
+    (payload.priorArtLinks || [""]).forEach((l) => addPriorArtLink(l));
+
+    $("priorArtPatents").value = payload.priorArtPatents || "";
+    $("technicalProblem").value = payload.technicalProblem || "";
+    $("constraints").value = payload.constraints || "";
+    $("metrics").value = payload.metrics || "";
+    $("solution").value = payload.solution || "";
+    $("advantages").value = payload.advantages || "";
+    $("tradeoffs").value = payload.tradeoffs || "";
+    $("innovativeFeatures").value = payload.innovativeFeatures || "";
+    $("mustHaveVsOptional").value = payload.mustHaveVsOptional || "";
+    $("variants").value = payload.variants || "";
+
+    // checkboxes sets
+    document.querySelectorAll('input[name="invType"]').forEach(i => i.checked = (payload.inventionTypes || []).includes(i.value));
+    document.querySelectorAll('input[name="devCtx"]').forEach(i => i.checked = (payload.developmentContext || []).includes(i.value));
+
+    $("architecture").value = payload.architecture || "";
+    $("workflow").value = payload.workflow || "";
+    $("parameters").value = payload.parameters || "";
+    $("controlSoftware").value = payload.controlSoftware || "";
+    $("embodiments").value = payload.embodiments || "";
+    $("edgeCases").value = payload.edgeCases || "";
+
+    $("drawingsAvailable").value = payload.drawingsAvailable || "";
+    $("figureDescriptions").value = payload.figureDescriptions || "";
+
+    $("prototypeStatus").value = payload.prototypeStatus || "";
+    $("testsStatus").value = payload.testsStatus || "";
+    $("testResults").value = payload.testResults || "";
+
+    $("disclosed").value = payload.disclosed || "";
+    $("disclosureHow").value = payload.disclosureHow || "";
+    $("disclosureWhenWhere").value = payload.disclosureWhenWhere || "";
+    $("disclosureToWhom").value = payload.disclosureToWhom || "";
+    $("futureDisclosure").value = payload.futureDisclosure || "";
+    $("futureDisclosureDetails").value = payload.futureDisclosureDetails || "";
+    $("ndaSigned").value = payload.ndaSigned || "";
+
+    $("inventorEqualsApplicant").value = payload.inventorEqualsApplicant || "";
+    $("universityCollab").value = payload.universityCollab || "";
+    $("universityCollabDetails").value = payload.universityCollabDetails || "";
+    $("relevantAgreements").value = payload.relevantAgreements || "";
+    $("relevantAgreementsDetails").value = payload.relevantAgreementsDetails || "";
+    $("thirdPartyContrib").value = payload.thirdPartyContrib || "";
+    $("thirdPartyDetails").value = payload.thirdPartyDetails || "";
+
+    $("finalNotes").value = payload.finalNotes || "";
+
+    setStatus("success", "Bozza caricata (nota: gli allegati vanno riselezionati).");
+  });
+
+  $("clearDraft").addEventListener("click", () => {
+    localStorage.removeItem(DRAFT_KEY);
+    setStatus("", "");
+  });
+
+  // --- Submit
+  $("patentForm").addEventListener("submit", async (e) => {
+    e.preventDefault();
+    setStatus("", "");
+
+    const payload = collectPayload();
+    const errors = validateClient(payload);
+    if (errors.length) {
+      setStatus("error", "Controlla questi campi: " + errors.join(" | "));
+      return;
+    }
+
+    const fd = new FormData();
+    fd.append("website", $("website").value); // honeypot
+    fd.append("payload", JSON.stringify(payload));
+
+    // Allega file (tutti in un unico array "attachments")
+    const fileInputs = ["attachmentsPriorArt", "attachmentsTech", "attachmentsTests", "attachmentsFinal"];
+    fileInputs.forEach((id) => {
+      const input = $(id);
+      if (!input || !input.files) return;
+      Array.from(input.files).forEach((f) => fd.append("attachments", f));
+    });
+
+    try {
+      setStatus("", "Invio in corso…");
+      const r = await fetch("/api/submit", { method: "POST", body: fd });
+      const j = await r.json().catch(() => ({}));
+      if (!r.ok || !j.ok) {
+        throw new Error(j.error || "Errore durante l’invio.");
+      }
+      setStatus("success", "Questionario inviato correttamente. Grazie!");
+      // opzionale: reset
+      // e.target.reset();
+    } catch (err) {
+      setStatus("error", err.message || "Errore.");
+    }
+  });
+
+  // initial blocks
+  updateApplicantBlocks();
+</script>
+</body>
+</html>
